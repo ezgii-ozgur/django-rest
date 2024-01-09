@@ -13,12 +13,13 @@ class Post(models.Model):
     modified_date = models.DateTimeField()
     slug = models.SlugField(unique=True, max_length=150, editable=False)
     image = models.ImageField(upload_to='media/post/')
+    modified_by_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='modified_by_user')
 
     def get_slug(self):
         slug = slugify(self.title.replace("ı", "i"))
         unique = slug
         number = 1
-        while Post.objects.filter(slug=unique).exist():
+        while Post.objects.filter(slug=unique).exists():
             unique = '{}-{}'.format(slug, number)
             number += 1
         return unique
