@@ -3,14 +3,24 @@ from post_data.api.models.post import Post
 
 
 class PostSerializer(serializers.ModelSerializer):
+    url = serializers.HyperlinkedIdentityField(
+        view_name='post:detail',
+        lookup_field='slug'
+    )
+    user_name = serializers.SerializerMethodField()
+
+    def get_user_name(self, obj):
+        return str(obj.user.username)
+
     class Meta:
         model = Post
         fields = [
-            'user',
+            'user_name',
             'title',
             'content',
             'image',
-            'slug',
+            'url',
             'created_date',
             'modified_by_user'
         ]
+

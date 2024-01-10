@@ -10,3 +10,4 @@ class PostUpdateCreateSerializer(serializers.ModelSerializer):
             'content',
             'image',
         ]
+
