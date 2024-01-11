@@ -6,7 +6,7 @@ from post_data.api.paginations.post_pagination import PostPagination
 
 
 class PostListAPIView(ListAPIView):
-    # qudueryset = Post.objects.all()
+    # queryset = Post.objects.all()
     serializer_class = PostSerializer
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ['title','content']

@@ -6,3 +6,6 @@ from comment.api.serializers.comment_create_serializer import CommentCreateSeria
 class CommentCreateAPIView(CreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentCreateSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user = self.request.user)

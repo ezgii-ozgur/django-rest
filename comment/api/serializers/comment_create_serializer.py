@@ -1,5 +1,4 @@
 from rest_framework.serializers import ModelSerializer, ValidationError
-
 from comment.api.models.comment import Comment
 
 
